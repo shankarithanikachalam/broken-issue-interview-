@@ -9,7 +9,6 @@ export const Dashboard: React.FC = () => {
   const error = useIncidentsStore((s) => s.error);
 
   useEffect(() => {
-    // BUG: no dependency array, will re-run on every render
     load();
   });
 
@@ -19,10 +18,9 @@ export const Dashboard: React.FC = () => {
         <h2>Filters</h2>
         <Filters />
       </aside>
-      <section className="content" aria-label="Incident list">
+      <section className="content">
         {loading && <div>Loading incidents…</div>}
-        {error && <div role="alert">Error: {error}</div>}
-        {/* BUG: may receive undefined when data not yet loaded */}
+        {error && <div>Error: {error}</div>}
         <IncidentList />
       </section>
     </div>

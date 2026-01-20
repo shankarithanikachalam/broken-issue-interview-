@@ -5,10 +5,9 @@ export const Filters: React.FC = () => {
   const setSeverityFilter = useIncidentsStore((s) => s.setSeverityFilter);
   const setSearch = useIncidentsStore((s) => s.setSearch);
 
-  // BUG: no value binding, component is uncontrolled and store may never update correctly
   return (
-    <div className="filters">
-      <label>
+    <div className="filter">
+      <div>
         Severity
         <select onChange={(e) => setSeverityFilter(e.target.value as any)}>
           <option value="">All</option>
@@ -17,15 +16,15 @@ export const Filters: React.FC = () => {
           <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
-      </label>
-      <label>
+      </div>
+      <div>
         Search
         <input
           type="search"
           placeholder="Title contains…"
           onChange={(e) => setSearch(e.target.value)}
         />
-      </label>
+      </div>
     </div>
   );
 };

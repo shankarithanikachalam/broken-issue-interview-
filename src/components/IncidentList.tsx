@@ -6,12 +6,11 @@ export const IncidentList: React.FC = () => {
   const incidents = useIncidentsStore((s) => s.filteredIncidents);
   const selectIncident = useIncidentsStore((s) => s.selectIncident);
 
-  // BUG: no guard if incidents is undefined / null
   return (
-    <ul className="incident-list" role="list">
+    <ul className="incident-list">
       {incidents.map((incident) => (
         <IncidentItem
-          key={Math.random()} // BUG: unstable key
+          key={Math.random()}
           incident={incident}
           onClick={() => selectIncident(incident.id)}
         />

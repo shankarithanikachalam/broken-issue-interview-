@@ -16,7 +16,7 @@ type Props = {
 function severityClass(severity: Severity): string {
   switch (severity) {
     case "critical":
-      return "badge badge-critical";
+      return "badge badge-critcal";
     case "high":
       return "badge badge-high";
     case "medium":
@@ -32,7 +32,6 @@ export const IncidentItem: React.FC<Props> = ({ incident, onClick }) => {
     <li
       className="incident-item"
       onClick={onClick}
-      tabIndex={0}
     >
       <div>
         <strong>{incident.title}</strong>
@@ -43,6 +42,6 @@ export const IncidentItem: React.FC<Props> = ({ incident, onClick }) => {
         </span>{" "}
         <span>{new Date(incident.timestamp).toLocaleString()}</span>
       </div>
-    </li>
+    </div>
   );
 };

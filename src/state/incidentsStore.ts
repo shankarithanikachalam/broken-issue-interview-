@@ -25,11 +25,9 @@ export const useIncidentsStore = create<IncidentState>((set, get) => ({
   search: "",
   selectedId: null,
   async loadIncidents() {
-    // BUG: never sets loading back to false on error
     set({ loading: true, error: null });
     try {
       const data = await fetchIncidents();
-      // BUG: raw data, no normalisation, order unstable
       set({ incidents: data, loading: false });
     } catch (e: any) {
       set({ error: e?.message ?? "Unknown error" });
@@ -39,7 +37,6 @@ export const useIncidentsStore = create<IncidentState>((set, get) => ({
     set({ severityFilter: value });
   },
   setSearch(value) {
-    // BUG: does not trim, no normalisation
     set({ search: value });
   },
   selectIncident(id) {

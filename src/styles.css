@@ -81,7 +81,7 @@ body {
   gap: 0.5rem;
 }
 
-.filters label {
+.filters div {
   display: flex;
   flex-direction: column;
   font-size: 0.85rem;

@@ -4,9 +4,9 @@ import { Dashboard } from "./pages/Dashboard";
 export const App: React.FC = () => {
   return (
     <div className="app-root">
-      <header className="app-header">
+      <div className="app-header">
         <h1>Incident Dashboard</h1>
-      </header>
+      </div>
       <main>
         <Dashboard />
       </main>

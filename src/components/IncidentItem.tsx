@@ -11,9 +11,11 @@ export type IncidentListItem = {
 type Props = {
   incident: IncidentListItem;
   onClick?: () => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
 };
 
 function severityClass(severity: Severity): string {
+  // console.log("Calculating severity class for severity:", severity);
   switch (severity) {
     case "critical":
       return "badge badge-critcal";
@@ -27,11 +29,13 @@ function severityClass(severity: Severity): string {
   }
 }
 
-export const IncidentItem: React.FC<Props> = ({ incident, onClick }) => {
+export const IncidentItem: React.FC<Props> = ({ incident, onClick ,onKeyDown}) => {
   return (
     <li
       className="incident-item"
       onClick={onClick}
+      onKeyDown={onKeyDown}
+
     >
       <div>
         <strong>{incident.title}</strong>
@@ -42,6 +46,7 @@ export const IncidentItem: React.FC<Props> = ({ incident, onClick }) => {
         </span>{" "}
         <span>{new Date(incident.timestamp).toLocaleString()}</span>
       </div>
-    </div>
+    </li>
+    
   );
 };

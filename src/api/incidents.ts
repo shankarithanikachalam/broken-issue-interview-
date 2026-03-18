@@ -34,15 +34,35 @@ function generateIncidents(count: number): IncidentDto[] {
 
   return incidents;
 }
+// 1. Initialize an in-memory database with a set of incidents that will be updated on 
+// each fetch to simulate changing data from the backend. 
+// This allows us to test the filtering and searching functionality with dynamic data.
+let INCIDENTS_DB: IncidentDto[] = generateIncidents(300);
 
+// 2. Function to update the in-memory database with new incidents on each fetch
+function updateIncidents() {
+  const updates = Math.floor(Math.random() * 5);
+
+  for (let i = 0; i < updates; i++) {
+    const index = Math.floor(Math.random() * INCIDENTS_DB.length);
+
+    INCIDENTS_DB[index] = {
+      ...INCIDENTS_DB[index],
+      severity: randomSeverity(),
+      timestamp: new Date().toISOString(),
+    };
+  }
+}
 export async function fetchIncidents(): Promise<IncidentDto[]> {
   // simulate network
   await new Promise((resolve) => setTimeout(resolve, 200));
 
-  // 5% random error
-  if (Math.random() < 0.05) {
+  // 2% random error
+  if (Math.random() < 0.02) { // Simulate a random backend failure with a 2% chance from the original 5% to make it less disruptive during testing
     throw new Error("Random backend failure");
   }
 
-  return generateIncidents(300);
+  updateIncidents(); // Update the in-memory database with new incidents on each fetch
+
+  return [...INCIDENTS_DB];
 }

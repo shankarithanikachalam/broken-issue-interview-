@@ -48,7 +48,7 @@ All core implementation, logic decisions, and architecture were written and unde
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 React, TypeScript, Zustand, React Router, Vitest
 
